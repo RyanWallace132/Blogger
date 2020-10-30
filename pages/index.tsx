@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 
@@ -28,11 +29,12 @@ export const getStaticProps = async ({ params }) => {
 }
 
 const Home: React.FC<{ posts: Post[] }> = (props) => {
-	const { posts } = props
+    const { posts } = props
 
 	return (
+            <Layout>
 		<div className={styles.container}>
-			<h1>Welcome to my Blog!</h1>
+			<h1 className="welcome">Welcome to my Blog!</h1>
 			<ul>
 				{posts.map((post, index) => {
 					return (
@@ -45,6 +47,8 @@ const Home: React.FC<{ posts: Post[] }> = (props) => {
 				})}
 			</ul>
 		</div>
+        
+    </Layout>
 	)
 }
 
